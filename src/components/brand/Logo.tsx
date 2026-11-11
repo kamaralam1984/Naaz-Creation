@@ -12,7 +12,7 @@ export function Logo({ className, tone = "dark" }: { className?: string; tone?: 
       </svg>
       <span className="flex flex-col leading-none">
         <span className="font-serif text-2xl tracking-[0.08em] uppercase">Nazi</span>
-        <span className="mt-1 text-[0.6rem] tracking-[0.42em] uppercase text-champagne-deep">Creation</span>
+        <span className={cn("logo-sub mt-1 text-[0.7rem] font-extrabold tracking-[0.34em] uppercase", tone === "light" && "logo-sub-bright")}>Creation</span>
       </span>
     </Link>
   );

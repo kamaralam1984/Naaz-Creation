@@ -12,6 +12,7 @@
   /* chrome tokens — Theme 1 */
   --header-bg: #f8f5ef; --header-fg: #26231f; --header-accent: #9a7b45; --footer-bg: #26231f;
   --wine-a: #7b3f49; --wine-b: #3f2026;
+  --logo-grad: linear-gradient(100deg, #8a6a35 0%, #b8934f 35%, #d6b76e 50%, #b8934f 65%, #8a6a35 100%);
   --charcoal: #26231f;
   --beige: #eae2d5;
 
@@ -52,6 +53,7 @@
   --ivory: #faf4e6;
   --header-bg: #0f3d2e; --header-fg: #f8f5ef; --header-accent: #c4a46a; --footer-bg: #0a2c21;
   --wine-a: #1f6a4f; --wine-b: #0a2c21;
+  --logo-grad: linear-gradient(100deg, #f3d584 0%, #fff6d6 28%, #eab94c 48%, #fff6d6 68%, #f3d584 100%);
 }
 [data-theme="2"] .only-t1 { display: none !important; }
 :root:not([data-theme="2"]) .only-t2 { display: none !important; }
@@ -162,3 +164,19 @@ a, button, [role="button"], input, select, textarea, label { touch-action: manip
 /* Product page sticky bar: nudge floating buttons up so they never sit on top of it */
 a[aria-label="Chat with us on WhatsApp"], [aria-label="Choose website theme"] { transition: transform 0.4s var(--ease-luxe); }
 body.has-sticky-cta a[aria-label="Chat with us on WhatsApp"], body.has-sticky-cta [aria-label="Choose website theme"] { transform: translateY(-4.5rem); }
+
+/* Bright, shining gold lettering — keeps "Creation" crisp on dark green */
+.gold-shine {
+  background: linear-gradient(100deg, #f3d584 0%, #fff6d6 24%, #eab94c 44%, #fff6d6 64%, #f3d584 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: goldtext 3.6s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(243, 213, 132, 0.45));
+}
+.logo-sub {
+  background-image: var(--logo-grad); background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: goldtext 4s ease-in-out infinite;
+}
+[data-theme="2"] .logo-sub { filter: drop-shadow(0 0 6px rgba(243, 213, 132, 0.5)); }
+.logo-sub-bright { background-image: linear-gradient(100deg, #f3d584 0%, #fff6d6 28%, #eab94c 48%, #fff6d6 68%, #f3d584 100%); filter: drop-shadow(0 0 6px rgba(243, 213, 132, 0.5)); }

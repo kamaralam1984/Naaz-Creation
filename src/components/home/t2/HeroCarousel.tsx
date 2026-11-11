@@ -86,7 +86,7 @@ export function HeroCarousel() {
             <motion.p variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 }, out: { opacity: 0 } }} className="flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-[0.42em] text-ivory/90">
               {s.eyebrow}
             </motion.p>
-            <motion.p variants={{ hidden: { opacity: 0 }, show: { opacity: 1 }, out: { opacity: 0 } }} className="gold-text mt-3 font-serif text-base uppercase sm:mt-4 sm:text-xl tracking-[0.3em]">Nazi Creation</motion.p>
+            <motion.p variants={{ hidden: { opacity: 0 }, show: { opacity: 1 }, out: { opacity: 0 } }} className="gold-shine mt-3 font-sans text-lg font-extrabold uppercase tracking-[0.26em] sm:mt-4 sm:text-2xl">Nazi Creation</motion.p>
             <h1 className="mt-4 font-serif text-[clamp(2.1rem,5.2vw,4.6rem)] font-normal italic leading-[1.02] text-[#f6ecd3]">
               {s.title.map((l, k) => (
                 <motion.span key={l} className="block" variants={{ hidden: { opacity: 0, y: 30, filter: "blur(6px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease, delay: 0.1 + k * 0.12 } }, out: { opacity: 0, transition: { duration: 0.25 } } }}>{l}</motion.span>
@@ -101,8 +101,8 @@ export function HeroCarousel() {
         </AnimatePresence>
 
         {/* product still life */}
-        <div aria-hidden className="pointer-events-none relative order-first -mx-6 mb-5 aspect-[1.4/1] self-stretch sm:-mx-10 lg:absolute lg:inset-y-0 lg:right-0 lg:order-none lg:mx-0 lg:mb-0 lg:aspect-auto lg:h-auto lg:w-[58%] lg:self-auto">
-          <div className="absolute inset-x-0 bottom-0 h-[13%] bg-gradient-to-b from-[#6b4527] via-[#4a2d18] to-[#2a190c] shadow-[inset_0_2px_0_rgba(243,226,176,0.25)] lg:hidden" />
+        <div aria-hidden className="pointer-events-none relative order-first -mx-6 -mb-1 aspect-[1.4/1] self-stretch sm:-mx-10 lg:absolute lg:inset-y-0 lg:right-0 lg:order-none lg:mx-0 lg:mb-0 lg:aspect-auto lg:h-auto lg:w-[58%] lg:self-auto">
+          <div className="absolute inset-x-0 bottom-[9.75%] h-[3.25%] bg-gradient-to-b from-[#6b4527] via-[#4a2d18] to-[#2a190c] shadow-[inset_0_1px_0_rgba(243,226,176,0.3)] lg:hidden" />
           <AnimatePresence mode="wait">
             <motion.div key={i} className="absolute inset-0" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.9, ease }}>
               {s.items.map((it, k) => (
