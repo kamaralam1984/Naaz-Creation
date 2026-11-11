@@ -147,3 +147,12 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 500; letter-spacin
 [data-theme="2"] .ph-band .eyebrow { color: var(--champagne); }
 [data-theme="2"] .ph-band .ph-intro { color: rgb(250 244 230 / 0.82); }
 [data-theme="2"] .ph-band h1 { color: #f6ecd3; }
+
+/* App-like feel on touch devices */
+html { -webkit-tap-highlight-color: transparent; -webkit-text-size-adjust: 100%; overscroll-behavior-y: none; }
+a, button, [role="button"], input, select, textarea, label { touch-action: manipulation; }
+@media (max-width: 1023px) {
+  input, select, textarea { font-size: 16px; } /* stops iOS zooming into fields */
+  button, a { -webkit-user-select: none; user-select: none; }
+}
+@media (display-mode: standalone) { body { overscroll-behavior: none; } }

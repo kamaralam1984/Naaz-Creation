@@ -21,7 +21,7 @@ export function ThemeSwitcher({ theme }: { theme: "1" | "2" }) {
     start(() => router.refresh());
   }
   return (
-    <div role="group" aria-label="Choose website theme" className={cn("fixed bottom-3 left-3 z-[60] flex origin-bottom-left scale-[0.85] sm:bottom-5 sm:left-5 sm:scale-100 flex items-center gap-1 rounded-full border border-champagne/50 bg-charcoal/90 p-1 pl-3 text-ivory shadow-[var(--shadow-lift)] backdrop-blur", pending && "opacity-70")}>
+    <div role="group" aria-label="Choose website theme" className={cn("fixed bottom-[calc(4.5rem+env(safe-area-inset-bottom))] left-3 z-[60] flex origin-bottom-left scale-[0.85] lg:bottom-5 lg:left-5 sm:scale-100 flex items-center gap-1 rounded-full border border-champagne/50 bg-charcoal/90 p-1 pl-3 text-ivory shadow-[var(--shadow-lift)] backdrop-blur", pending && "opacity-70")}>
       <Palette size={15} className="mr-1 text-champagne" aria-hidden />
       {THEMES.map((t) => (
         <button key={t.id} onClick={() => pick(t.id)} aria-pressed={theme === t.id}

@@ -18,9 +18,9 @@ const SLIDES: Slide[] = [
     body: "Discover timeless handwoven, hand-painted and artisanal treasures that bring Indian heritage to modern living.",
     cta: ["Shop the Collection", "/shop"], ghost: ["Explore Our Crafts", "/collections"],
     items: [
-      { src: P("elephant-ear-terracotta-vase"), left: 2, bottom: 15, h: 84, ar: 0.41, z: 3 },
-      { src: P("golden-tree-of-life-frame"), left: 40, bottom: 44, h: 52, ar: 0.82, z: 1 },
-      { src: P("turquoise-ring-mirror"), left: 74, bottom: 40, h: 40, ar: 1, z: 1 },
+      { src: P("elephant-ear-terracotta-vase"), left: 2, bottom: 14, h: 80, ar: 0.41, z: 3 },
+      { src: P("golden-tree-of-life-frame"), left: 38, bottom: 44, h: 50, ar: 0.82, z: 1 },
+      { src: P("turquoise-ring-mirror"), left: 67, bottom: 40, h: 40, ar: 1, z: 1 },
       { src: P("sunflower-velvet-cushion"), left: 20, bottom: 16, h: 42, ar: 1, z: 2 },
       { src: P("red-mirror-mosaic-plate"), left: 57, bottom: 12, h: 38, ar: 1, z: 3 },
     ],
@@ -34,7 +34,7 @@ const SLIDES: Slide[] = [
       { src: P("golden-tree-of-life-frame"), left: 26, bottom: 30, h: 56, ar: 0.82, z: 3 },
       { src: P("golden-straw-fish-frame"), left: 50, bottom: 48, h: 38, ar: 1, z: 1 },
       { src: P("zardozi-charkha-frame"), left: 46, bottom: 13, h: 28, ar: 1.62, z: 4 },
-      { src: P("shell-sun-framed-art"), left: 74, bottom: 22, h: 40, ar: 1, z: 2 },
+      { src: P("shell-sun-framed-art"), left: 69, bottom: 22, h: 38, ar: 1, z: 2 },
     ],
   },
   {
@@ -45,8 +45,8 @@ const SLIDES: Slide[] = [
       { src: P("buddha-mosaic-wall-plate"), left: 6, bottom: 22, h: 62, ar: 1, z: 2 },
       { src: P("blue-mirror-mosaic-plate"), left: 40, bottom: 44, h: 46, ar: 1, z: 1 },
       { src: P("red-mirror-mosaic-plate"), left: 46, bottom: 10, h: 40, ar: 1, z: 3 },
-      { src: P("turquoise-ring-mirror"), left: 76, bottom: 38, h: 46, ar: 1, z: 2 },
-      { src: P("teal-flower-cushion"), left: 74, bottom: 8, h: 26, ar: 1, z: 4 },
+      { src: P("turquoise-ring-mirror"), left: 66, bottom: 38, h: 44, ar: 1, z: 2 },
+      { src: P("teal-flower-cushion"), left: 78, bottom: 8, h: 26, ar: 1, z: 4 },
     ],
   },
 ];
@@ -54,6 +54,7 @@ const SLIDES: Slide[] = [
 export function HeroCarousel() {
   const [i, setI] = useState(0);
   const [hover, setHover] = useState(false);
+  const [touchX, setTouchX] = useState<number | null>(null);
   const go = useCallback((d: number) => setI((c) => (c + d + SLIDES.length) % SLIDES.length), []);
   useEffect(() => {
     if (hover) return;
@@ -63,7 +64,10 @@ export function HeroCarousel() {
   const s = SLIDES[i];
 
   return (
-    <section onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} aria-roledescription="carousel" aria-label="Featured collections"
+    <section onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+      onTouchStart={(e) => setTouchX(e.touches[0].clientX)}
+      onTouchEnd={(e) => { if (touchX !== null) { const dx = e.changedTouches[0].clientX - touchX; if (Math.abs(dx) > 50) go(dx < 0 ? 1 : -1); setTouchX(null); } }}
+      aria-roledescription="carousel" aria-label="Featured collections"
       className="relative isolate overflow-hidden bg-gradient-to-br from-[#0f3d2e] via-[#0b3026] to-[#071f17] text-ivory">
       {/* ambience: warm bokeh, leaf shadows, wooden shelf */}
       <div aria-hidden className="absolute -left-20 top-1/2 -z-10 h-80 w-80 rounded-full bg-amber-500/25 blur-[90px]" />
@@ -74,21 +78,21 @@ export function HeroCarousel() {
         ))}
       </svg>
       <Sparkles count={14} className="-z-[5]" />
-      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-[4] h-[13%] bg-gradient-to-b from-[#6b4527] via-[#4a2d18] to-[#2a190c] shadow-[inset_0_2px_0_rgba(243,226,176,0.25)]" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 -z-[4] hidden bg-gradient-to-b from-[#6b4527] via-[#4a2d18] to-[#2a190c] shadow-[inset_0_2px_0_rgba(243,226,176,0.25)] lg:block lg:h-[13%]" />
 
-      <div className="relative mx-auto flex min-h-[480px] max-w-[1440px] flex-col justify-center px-6 pb-20 pt-12 sm:px-10 lg:min-h-[560px] lg:px-16">
+      <div className="relative mx-auto flex max-w-[1440px] flex-col justify-center px-6 pb-10 pt-0 sm:px-10 lg:min-h-[560px] lg:pb-20 lg:pt-12 lg:px-16">
         <AnimatePresence mode="wait">
           <motion.div key={i} initial="hidden" animate="show" exit="out" aria-live="polite" className="relative z-10 max-w-md lg:max-w-lg">
             <motion.p variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 }, out: { opacity: 0 } }} className="flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-[0.42em] text-ivory/90">
               {s.eyebrow}
             </motion.p>
-            <motion.p variants={{ hidden: { opacity: 0 }, show: { opacity: 1 }, out: { opacity: 0 } }} className="gold-text mt-4 font-serif text-xl uppercase tracking-[0.3em]">Naaz Creation</motion.p>
-            <h1 className="mt-4 font-serif text-[clamp(2.6rem,5.2vw,4.6rem)] font-normal italic leading-[1.02] text-[#f6ecd3]">
+            <motion.p variants={{ hidden: { opacity: 0 }, show: { opacity: 1 }, out: { opacity: 0 } }} className="gold-text mt-3 font-serif text-base uppercase sm:mt-4 sm:text-xl tracking-[0.3em]">Naaz Creation</motion.p>
+            <h1 className="mt-4 font-serif text-[clamp(2.1rem,5.2vw,4.6rem)] font-normal italic leading-[1.02] text-[#f6ecd3]">
               {s.title.map((l, k) => (
                 <motion.span key={l} className="block" variants={{ hidden: { opacity: 0, y: 30, filter: "blur(6px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease, delay: 0.1 + k * 0.12 } }, out: { opacity: 0, transition: { duration: 0.25 } } }}>{l}</motion.span>
               ))}
             </h1>
-            <motion.p variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8 } }, out: { opacity: 0 } }} className="mt-5 max-w-sm text-[0.95rem] leading-relaxed text-ivory/85">{s.body}</motion.p>
+            <motion.p variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 0.8 } }, out: { opacity: 0 } }} className="mt-3 max-w-sm text-[0.9rem] leading-relaxed text-ivory/85 sm:mt-5 sm:text-[0.95rem]">{s.body}</motion.p>
             <motion.div variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0, transition: { delay: 0.65, duration: 0.8 } }, out: { opacity: 0 } }} className="mt-7 flex flex-wrap gap-3">
               <Button href={s.cta[1]} variant="gold" className="!h-11 rounded-[3px] !px-6 !text-[0.75rem] !tracking-wide !normal-case">{s.cta[0]} <ArrowRight size={15} /></Button>
               <Button href={s.ghost[1]} variant="outline" className="!h-11 rounded-[3px] !border-ivory/80 !px-6 !text-[0.75rem] !tracking-wide !normal-case !text-ivory hover:!bg-ivory hover:!text-charcoal">{s.ghost[0]}</Button>
@@ -97,7 +101,8 @@ export function HeroCarousel() {
         </AnimatePresence>
 
         {/* product still life */}
-        <div aria-hidden className="pointer-events-none relative mt-4 h-64 w-full sm:h-72 lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto lg:w-[58%]">
+        <div aria-hidden className="pointer-events-none relative order-first -mx-6 mb-5 aspect-[1.4/1] self-stretch sm:-mx-10 lg:absolute lg:inset-y-0 lg:right-0 lg:order-none lg:mx-0 lg:mb-0 lg:aspect-auto lg:h-auto lg:w-[58%] lg:self-auto">
+          <div className="absolute inset-x-0 bottom-0 h-[13%] bg-gradient-to-b from-[#6b4527] via-[#4a2d18] to-[#2a190c] shadow-[inset_0_2px_0_rgba(243,226,176,0.25)] lg:hidden" />
           <AnimatePresence mode="wait">
             <motion.div key={i} className="absolute inset-0" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.9, ease }}>
               {s.items.map((it, k) => (
@@ -110,9 +115,9 @@ export function HeroCarousel() {
         </div>
       </div>
 
-      <button onClick={() => go(-1)} aria-label="Previous slide" className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-charcoal shadow-lg transition-transform hover:scale-110 sm:left-5"><ChevronLeft size={20} /></button>
-      <button onClick={() => go(1)} aria-label="Next slide" className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-charcoal shadow-lg transition-transform hover:scale-110 sm:right-5"><ChevronRight size={20} /></button>
-      <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+      <button onClick={() => go(-1)} aria-label="Previous slide" className="absolute left-3 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-charcoal shadow-lg transition-transform hover:scale-110 sm:left-5 sm:flex"><ChevronLeft size={20} /></button>
+      <button onClick={() => go(1)} aria-label="Next slide" className="absolute right-3 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-charcoal shadow-lg transition-transform hover:scale-110 sm:right-5 sm:flex"><ChevronRight size={20} /></button>
+      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-2 max-lg:bottom-2">
         {SLIDES.map((_, k) => (
           <button key={k} onClick={() => setI(k)} aria-label={`Go to slide ${k + 1}`} aria-current={k === i}
             className={cn("h-2 rounded-full transition-all duration-500", k === i ? "w-6 bg-champagne" : "w-2 bg-ivory/70 hover:bg-ivory")} />
