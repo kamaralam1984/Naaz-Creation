@@ -1,10 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 import { Check, Heart, Minus, Plus, Truck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Price } from "@/components/ui/Price";
 import { useStore } from "@/components/providers/StoreProvider";
+import { ease } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 import type { Product, Variant } from "@/server/types";
 
@@ -19,6 +22,20 @@ export function ProductPurchase({ p, variants }: { p: Product; variants: Variant
   const [rcpt, setRcpt] = useState(""); const [msg, setMsg] = useState("");
   const [added, setAdded] = useState(false);
   const gift = p.kind === "giftcard";
+  const ctaRef = useRef<HTMLDivElement>(null);
+  const optRef = useRef<HTMLFieldSetElement>(null);
+  const [ctaSeen, setCtaSeen] = useState(true);
+  const [footerSeen, setFooterSeen] = useState(false);
+
+  // Sticky bar shows whenever the main buttons are off-screen (and hides again over the footer).
+  useEffect(() => {
+    const cta = ctaRef.current; if (!cta) return;
+    const o1 = new IntersectionObserver(([e]) => setCtaSeen(e.isIntersecting), { threshold: 0.1 });
+    o1.observe(cta);
+    const f = document.querySelector("footer"); let o2: IntersectionObserver | undefined;
+    if (f) { o2 = new IntersectionObserver(([e]) => setFooterSeen(e.isIntersecting), { threshold: 0.05 }); o2.observe(f); }
+    return () => { o1.disconnect(); o2?.disconnect(); };
+  }, []);
 
   useEffect(() => { pushRecent(p.id); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, [p.id]);
 
@@ -35,6 +52,19 @@ export function ProductPurchase({ p, variants }: { p: Product; variants: Variant
   const line = () => ({ productId: p.id, variantId: v?.id ?? null, qty, meta: gift ? { recipientEmail: rcpt, message: msg || undefined } : undefined });
   const add = () => { addToCart(line()); setAdded(true); setTimeout(() => setAdded(false), 1800); };
   const buyNow = () => { addToCart(line(), { silent: true }); router.push("/checkout"); };
+
+  const show = !ctaSeen && !footerSeen;
+  useEffect(() => {
+    document.body.classList.toggle("has-sticky-cta", show);
+    return () => document.body.classList.remove("has-sticky-cta");
+  }, [show]);
+  const scrollTo = (el: Element | null) => { el?.scrollIntoView({ behavior: "smooth", block: "center" }); (el?.querySelector("button,input") as HTMLElement | null)?.focus({ preventScroll: true }); };
+  const stickyLabel = added ? "Added ✓" : out ? "Sold out" : needVariant ? "Select an option" : !giftOk ? "Add recipient" : "Add to bag";
+  const stickyAction = () => {
+    if (needVariant) return scrollTo(optRef.current);
+    if (!giftOk) return scrollTo(document.getElementById("g-email")?.parentElement ?? null);
+    add();
+  };
 
   async function check(e: React.FormEvent) {
     e.preventDefault(); setChecking(true);
@@ -56,7 +86,7 @@ export function ProductPurchase({ p, variants }: { p: Product; variants: Variant
       </p>
 
       {variants.length > 0 && (
-        <fieldset className="mt-6">
+        <fieldset ref={optRef} className="mt-6">
           <legend className="eyebrow mb-3">{gift ? "Amount" : "Option"}{v && <span className="ml-2 normal-case tracking-normal text-charcoal">{v.label}</span>}</legend>
           <div className="flex flex-wrap gap-2">
             {variants.map((x) => (
@@ -83,7 +113,7 @@ export function ProductPurchase({ p, variants }: { p: Product; variants: Variant
         <button type="button" onClick={() => toggleWishlist(p.id)} aria-pressed={saved} aria-label={saved ? "Remove from wishlist" : "Add to wishlist"} className="flex h-12 w-12 items-center justify-center border border-charcoal/30 hover:border-charcoal"><Heart size={19} className={cn(saved && "fill-burgundy text-burgundy")} /></button>
       </div>
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+      <div ref={ctaRef} className="mt-5 grid gap-3 sm:grid-cols-2">
         <Button size="lg" disabled={out || needVariant || !giftOk} onClick={add}>{added ? <><Check size={16} /> Added</> : out ? "Sold out" : needVariant ? "Select an option" : "Add to bag"}</Button>
         <Button size="lg" variant="outline" disabled={out || needVariant || !giftOk} onClick={buyNow}>Buy now</Button>
       </div>
@@ -100,6 +130,27 @@ export function ProductPurchase({ p, variants }: { p: Product; variants: Variant
           <p className="mt-3 text-xs text-charcoal/60">Free shipping above ₹3,000 · Express available at checkout · International shipping on request</p>
         </div>
       )}
+      <AnimatePresence>
+        {show && (
+          <motion.div key="sticky" initial={{ y: 90, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 90, opacity: 0 }} transition={{ duration: 0.4, ease }}
+            role="region" aria-label="Quick add to bag"
+            className="fixed inset-x-0 bottom-[calc(3.5rem+env(safe-area-inset-bottom))] z-[57] border-t border-champagne/50 bg-ivory/95 shadow-[0_-12px_30px_-14px_rgb(38_35_31/0.4)] backdrop-blur-xl lg:bottom-0">
+            <span aria-hidden className="gold-line absolute inset-x-0 top-0 h-px" />
+            <div className="mx-auto flex max-w-[1440px] items-center gap-3 px-4 py-2.5 sm:px-8 lg:px-10">
+              {p.images[0] && <span className="relative hidden h-12 w-12 shrink-0 overflow-hidden rounded bg-beige sm:block"><Image src={p.images[0]} alt="" fill sizes="48px" className="object-contain p-1" /></span>}
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-serif text-base leading-tight sm:text-lg">{p.name}</p>
+                <p className="flex flex-wrap items-baseline gap-x-2 text-sm">
+                  <span className="font-semibold"><Price inr={price} /></span>
+                  {p.compare_at && discount > 0 && <><s className="text-xs text-charcoal/50"><Price inr={p.compare_at} /></s><span className="text-xs font-medium text-danger">{discount}% off</span></>}
+                  {v && <span className="text-xs text-charcoal/60">· {v.label}</span>}
+                </p>
+              </div>
+              <Button size="md" className="shrink-0 !px-5 sm:!px-8" disabled={out} onClick={stickyAction}>{stickyLabel}</Button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
