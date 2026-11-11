@@ -22,9 +22,9 @@ export function AnnouncementBar({ text }: { text: string }) {
         </p>
         <span aria-hidden className="hidden h-4 w-px bg-champagne/40 md:block" />
         <p className="hidden text-xs tracking-wide md:block">Festive Collection Now Live – Up to 30% Off</p>
-        <Link href="/sale" className="shrink-0 rounded-[3px] bg-champagne px-3 py-1 text-[0.66rem] font-semibold text-charcoal transition-colors hover:bg-[var(--gold-hi)]">Shop Now →</Link>
+        <Link href="/sale" className="shrink-0 rounded-[3px] bg-champagne px-3 py-1.5 text-[0.7rem] font-semibold text-charcoal transition-colors hover:bg-[var(--gold-hi)]">Shop Now →</Link>
       </Container>
-      <button onClick={() => setOpen(false)} aria-label="Dismiss announcement" className="absolute right-3 top-1/2 -translate-y-1/2 p-1 sm:right-8"><X size={14} /></button>
+      <button onClick={() => setOpen(false)} aria-label="Dismiss announcement" className="absolute right-1 top-1/2 -translate-y-1/2 p-3 sm:right-6"><X size={14} /></button>
       <span aria-hidden className="gold-line absolute inset-x-0 bottom-0 h-px" />
     </div>
   );

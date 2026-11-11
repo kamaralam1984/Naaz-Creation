@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { Eye, Heart, Star } from "lucide-react";
+import { Eye, Heart, Plus, ShoppingBag, Star } from "lucide-react";
 import { Badge } from "@/components/ui/Badge";
 import { Price } from "@/components/ui/Price";
 import { ProductImage } from "@/components/product/ProductImage";
@@ -42,7 +42,12 @@ export function ProductCard({ p, priority = false }: { p: Product; priority?: bo
           className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-ivory/90 transition-transform hover:scale-110">
           <Heart size={17} className={cn(saved && "fill-burgundy text-burgundy")} />
         </button>
-        <div className="absolute inset-x-0 bottom-0 flex translate-y-full gap-px transition-transform duration-[400ms] ease-[var(--ease-luxe)] group-focus-within:translate-y-0 group-hover:translate-y-0 max-lg:translate-y-0">
+        <button onClick={() => (needsOptions ? setQv(true) : addToCart({ productId: p.id, qty: 1 }))} disabled={soldOut}
+          aria-label={soldOut ? `${p.name} is sold out` : needsOptions ? `Choose options for ${p.name}` : `Add ${p.name} to bag`}
+          className="absolute bottom-2 right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--header-bg)] text-[color:var(--header-fg)] shadow-lg ring-1 ring-champagne/50 transition-transform active:scale-90 disabled:opacity-50 lg:hidden">
+          {needsOptions ? <Plus size={18} /> : <ShoppingBag size={17} />}
+        </button>
+        <div className="absolute inset-x-0 bottom-0 flex translate-y-full gap-px transition-transform duration-[400ms] ease-[var(--ease-luxe)] group-focus-within:translate-y-0 group-hover:translate-y-0 max-lg:hidden">
           <button onClick={() => setQv(true)} className="flex h-11 flex-1 items-center justify-center gap-2 bg-ivory/95 max-sm:flex-none max-sm:basis-12 text-[0.68rem] uppercase tracking-[0.18em] hover:bg-ivory"><Eye size={14} /> <span className="max-sm:sr-only">Quick view</span></button>
           <button disabled={soldOut}
             onClick={() => (needsOptions ? setQv(true) : addToCart({ productId: p.id, qty: 1 }))}

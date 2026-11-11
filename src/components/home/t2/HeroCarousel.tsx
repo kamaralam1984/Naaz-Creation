@@ -117,10 +117,11 @@ export function HeroCarousel() {
 
       <button onClick={() => go(-1)} aria-label="Previous slide" className="absolute left-3 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-charcoal shadow-lg transition-transform hover:scale-110 sm:left-5 sm:flex"><ChevronLeft size={20} /></button>
       <button onClick={() => go(1)} aria-label="Next slide" className="absolute right-3 top-1/2 z-20 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-charcoal shadow-lg transition-transform hover:scale-110 sm:right-5 sm:flex"><ChevronRight size={20} /></button>
-      <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-2 max-lg:bottom-2">
+      <div className="absolute bottom-0 left-1/2 z-20 flex -translate-x-1/2 gap-0 max-lg:-bottom-1">
         {SLIDES.map((_, k) => (
-          <button key={k} onClick={() => setI(k)} aria-label={`Go to slide ${k + 1}`} aria-current={k === i}
-            className={cn("h-2 rounded-full transition-all duration-500", k === i ? "w-6 bg-champagne" : "w-2 bg-ivory/70 hover:bg-ivory")} />
+          <button key={k} onClick={() => setI(k)} aria-label={`Go to slide ${k + 1}`} aria-current={k === i} className="group flex h-9 items-center px-1">
+            <span className={cn("block h-2 rounded-full transition-all duration-500", k === i ? "w-6 bg-champagne" : "w-2 bg-ivory/70 group-hover:bg-ivory")} />
+          </button>
         ))}
       </div>
     </section>

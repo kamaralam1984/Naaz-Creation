@@ -57,7 +57,7 @@ export function BestsellerTabs({ data }: { data: Tabs }) {
       <div className="flex justify-center gap-2 sm:justify-end" role="tablist" aria-label="Product lists">
         {LABELS.map(([k, l]) => (
           <button key={k} role="tab" aria-selected={tab === k} onClick={() => setTab(k)}
-            className={cn("rounded-[3px] border px-4 py-1.5 text-xs font-medium transition-all duration-300", tab === k ? "border-[#0f3d2e] bg-[#7a3e1d] text-ivory shadow-md" : "border-charcoal/15 bg-white text-charcoal hover:border-champagne-deep")}>{l}</button>
+            className={cn("h-10 rounded-[3px] border px-4 text-xs font-medium transition-all duration-300", tab === k ? "border-[#0f3d2e] bg-[#7a3e1d] text-ivory shadow-md" : "border-charcoal/15 bg-white text-charcoal hover:border-champagne-deep")}>{l}</button>
         ))}
       </div>
       <div className="relative mt-5">

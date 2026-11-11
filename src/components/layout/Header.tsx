@@ -33,6 +33,10 @@ export function Header() {
     document.body.style.overflow = mobile ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [mobile]);
+  useEffect(() => {
+    document.body.classList.toggle("overlay-open", mobile || searchOpen);
+    return () => document.body.classList.remove("overlay-open");
+  }, [mobile, searchOpen]);
 
   const active = nav.find((n) => n.label === open && n.columns);
 

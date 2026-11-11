@@ -24,7 +24,7 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((it, i) => (
           <li key={it.label} className="flex items-center gap-2">
-            {it.href ? <a href={it.href} className="link-underline">{it.label}</a> : <span aria-current="page" className="text-charcoal">{it.label}</span>}
+            {it.href ? <a href={it.href} className="link-underline inline-block py-1.5">{it.label}</a> : <span aria-current="page" className="text-charcoal">{it.label}</span>}
             {i < items.length - 1 && <span aria-hidden>/</span>}
           </li>
         ))}

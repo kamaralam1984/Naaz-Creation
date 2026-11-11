@@ -35,8 +35,8 @@ export function Footer({ social, whatsapp }: { social: { instagram: string; face
           {cols.map((c) => (
             <div key={c.title}>
               <p className="eyebrow !text-champagne">{c.title}</p>
-              <ul className="mt-5 space-y-3 text-sm">
-                {c.links.map(([l, h]) => <li key={h}><Link href={h} className="inline-block text-ivory/80 transition-all duration-300 hover:translate-x-1 hover:text-[var(--gold-hi)]">{l}</Link></li>)}
+              <ul className="mt-4 space-y-0.5 text-sm">
+                {c.links.map(([l, h]) => <li key={h}><Link href={h} className="inline-block py-1.5 text-ivory/80 transition-all duration-300 hover:translate-x-1 hover:text-[var(--gold-hi)]">{l}</Link></li>)}
               </ul>
             </div>
           ))}
@@ -46,7 +46,7 @@ export function Footer({ social, whatsapp }: { social: { instagram: string; face
       <div className="relative border-t border-champagne/25">
         <Container className="flex flex-col gap-3 py-6 text-xs text-ivory/60 sm:flex-row sm:justify-between sm:pr-32">
           <p>© <Year /> {site.name}. All rights reserved.</p>
-          <div className="flex items-center gap-6"><a href="#top" className="link-underline uppercase tracking-[0.16em] text-champagne">Back to top ↑</a><CurrencySwitch /><Link href="/legal/privacy">Privacy</Link><Link href="/legal/terms">Terms</Link></div>
+          <div className="flex items-center gap-6"><a href="#top" className="link-underline inline-block py-2 uppercase tracking-[0.16em] text-champagne">Back to top ↑</a><CurrencySwitch /><Link href="/legal/privacy" className="inline-block py-2">Privacy</Link><Link href="/legal/terms" className="inline-block py-2">Terms</Link></div>
         </Container>
       </div>
     </footer>

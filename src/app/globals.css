@@ -180,3 +180,9 @@ body.has-sticky-cta a[aria-label="Chat with us on WhatsApp"], body.has-sticky-ct
 }
 [data-theme="2"] .logo-sub { filter: drop-shadow(0 0 6px rgba(243, 213, 132, 0.5)); }
 .logo-sub-bright { background-image: linear-gradient(100deg, #f3d584 0%, #fff6d6 28%, #eab94c 48%, #fff6d6 68%, #f3d584 100%); filter: drop-shadow(0 0 6px rgba(243, 213, 132, 0.5)); }
+
+/* Dark-gold "Creation" for logos that sit on light backgrounds (e.g. the mobile menu) */
+.logo-sub-dark { background-image: linear-gradient(100deg, #7a5a28 0%, #a8803c 40%, #c9a45a 50%, #a8803c 60%, #7a5a28 100%); filter: none !important; }
+/* While a drawer / menu / search is open, tuck away the app chrome that would sit on top of it */
+body.overlay-open nav[aria-label="App navigation"], body.drawer-open nav[aria-label="App navigation"],
+body.overlay-open [data-floating], body.drawer-open [data-floating] { display: none !important; }

@@ -32,7 +32,7 @@ export function LoginForm({ action, next }: { action: Action; next?: string }) {
       {next && <input type="hidden" name="next" value={next} />}
       <Field label="Email" name="email" type="email" autoComplete="email" required defaultValue={s.values?.email} key={`e-${s.values?.email ?? ""}-${s.error ?? ""}`} />
       <Field label="Password" name="password" type="password" autoComplete="current-password" required />
-      <div className="flex items-center justify-between text-sm"><Link href="/forgot-password" className="link-underline">Forgot password?</Link></div>
+      <div className="flex items-center justify-between text-sm"><Link href="/forgot-password" className="link-underline inline-block py-2">Forgot password?</Link></div>
       <Submit className="w-full">Sign in</Submit>
     </form>
   );

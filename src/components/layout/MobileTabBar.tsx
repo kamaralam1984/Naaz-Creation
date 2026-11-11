@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Heart, Home, LayoutGrid, ShoppingBag, User } from "lucide-react";
 import { useStore } from "@/components/providers/StoreProvider";
@@ -8,7 +9,11 @@ import { cn } from "@/lib/cn";
 /** App-style bottom navigation, phones only. */
 export function MobileTabBar() {
   const path = usePathname();
-  const { user, cartCount, wishlist, openDrawer } = useStore();
+  const { user, cartCount, wishlist, openDrawer, drawerOpen } = useStore();
+  useEffect(() => {
+    document.body.classList.toggle("drawer-open", drawerOpen);
+    return () => document.body.classList.remove("drawer-open");
+  }, [drawerOpen]);
   if (path.startsWith("/admin") || path.startsWith("/checkout")) return null;
   const items = [
     { label: "Home", href: "/", icon: Home, on: path === "/" },
@@ -23,7 +28,7 @@ export function MobileTabBar() {
         {items.map(({ label, href, icon: Icon, on, badge, action }) => (
           <li key={label}>
             <Link href={href} onClick={action ? (e) => { e.preventDefault(); action(); } : undefined} aria-current={on ? "page" : undefined}
-              className={cn("relative flex h-14 flex-col items-center justify-center gap-0.5 text-[0.62rem] font-medium tracking-wide transition-colors active:scale-95", on ? "text-champagne" : "opacity-80")}>
+              className={cn("relative flex h-14 flex-col items-center justify-center gap-0.5 text-[0.68rem] font-medium tracking-wide transition-colors active:scale-95", on ? "text-champagne" : "opacity-80")}>
               {on && <span aria-hidden className="gold-line absolute inset-x-5 top-0 h-[2px]" />}
               <span className="relative"><Icon size={21} strokeWidth={on ? 2.2 : 1.7} aria-hidden />
                 {!!badge && <span className="absolute -right-2 -top-1.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-champagne px-1 text-[0.58rem] font-semibold text-charcoal">{badge}</span>}

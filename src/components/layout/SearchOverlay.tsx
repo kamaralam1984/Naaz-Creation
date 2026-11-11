@@ -9,7 +9,7 @@ import { Price } from "@/components/ui/Price";
 import { Container } from "@/components/ui/Container";
 
 type Sug = { products: { slug: string; name: string; price: number; craft: string | null; tone: "clay" | "brass" | "wine" | "sand" | "ink"; category_slug: string | null; image: string | null }[]; categories: { slug: string; name: string }[] };
-const POPULAR = ["Copper bottle", "Dokra", "Terracotta", "Serving tray", "Madhubani"];
+const POPULAR = ["Golden straw", "Madhubani", "Mirror work", "Cushion", "Tree of life"];
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   const router = useRouter();
@@ -31,13 +31,13 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
   return (
     <AnimatePresence>
       {open && (
-        <motion.div role="dialog" aria-modal="true" aria-label="Search" className="fixed inset-0 z-[80] overflow-y-auto bg-ivory" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
+        <motion.div role="dialog" aria-modal="true" aria-label="Search" className="fixed inset-0 z-[80] overflow-y-auto bg-ivory text-charcoal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
           <Container className="max-w-4xl py-8">
             <div className="flex items-center gap-4 border-b border-charcoal pb-4">
               <Search size={22} aria-hidden />
               <form className="flex-1" onSubmit={(e) => { e.preventDefault(); if (q.trim()) go(q.trim()); }} role="search">
                 <label htmlFor="site-search" className="sr-only">Search the house</label>
-                <input id="site-search" ref={input} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search copper, Dokra, trays…" autoComplete="off" className="w-full bg-transparent font-serif text-3xl placeholder:text-charcoal/35 focus:outline-none sm:text-4xl" />
+                <input id="site-search" ref={input} value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search frames, cushions, mirrors…" autoComplete="off" className="w-full bg-transparent font-serif text-2xl sm:text-3xl placeholder:text-charcoal/35 focus:outline-none sm:text-4xl" />
               </form>
               <button onClick={onClose} aria-label="Close search" className="p-2"><X size={24} /></button>
             </div>
