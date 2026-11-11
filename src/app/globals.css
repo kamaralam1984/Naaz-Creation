@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+/* ───────── Naaz Creation design tokens ───────── */
+:root {
+  --ivory: #f8f5ef;
+  --champagne: #c4a46a;
+  --champagne-deep: #9a7b45; /* AA-safe gold for text on ivory */
+  --burgundy: #572e35;
+  --forest-deep: #0a2c21;
+  --cream: #f7f1e3;
+  /* chrome tokens — Theme 1 */
+  --header-bg: #f8f5ef; --header-fg: #26231f; --header-accent: #9a7b45; --footer-bg: #26231f;
+  --wine-a: #7b3f49; --wine-b: #3f2026;
+  --charcoal: #26231f;
+  --beige: #eae2d5;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-slow: 900ms;
+}
+
+@theme inline {
+  --color-ivory: var(--ivory);
+  --color-champagne: var(--champagne);
+  --color-champagne-deep: var(--champagne-deep);
+  --color-burgundy: var(--burgundy);
+  --color-charcoal: var(--charcoal);
+  --color-beige: var(--beige);
+
+  --font-serif: var(--font-cormorant), "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  /* Editorial type scale */
+  --text-display: clamp(3rem, 8vw, 7rem);
+  --text-h1: clamp(2.5rem, 5.5vw, 4.5rem);
+  --text-h2: clamp(2rem, 4vw, 3.25rem);
+  --text-h3: clamp(1.5rem, 2.5vw, 2rem);
+
+  /* Soft, warm shadows — no glow */
+  --shadow-soft: 0 1px 2px rgb(38 35 31 / 0.05), 0 8px 24px -12px rgb(38 35 31 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(38 35 31 / 0.06), 0 24px 48px -20px rgb(38 35 31 / 0.22);
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Theme 2 — deep forest green & gold. Selected via <html data-theme="2"> (see ThemeSwitcher). */
+[data-theme="2"] {
+  --burgundy: #0f3d2e;
+  --ivory: #faf4e6;
+  --header-bg: #0f3d2e; --header-fg: #f8f5ef; --header-accent: #c4a46a; --footer-bg: #0a2c21;
+  --wine-a: #1f6a4f; --wine-b: #0a2c21;
+}
+[data-theme="2"] .only-t1 { display: none !important; }
+:root:not([data-theme="2"]) .only-t2 { display: none !important; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 500; letter-spacing: -0.01em; line-height: 1.05; }
+
+::selection { background: var(--champagne); color: var(--charcoal); }
+
+:focus-visible { outline: 2px solid var(--champagne-deep); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* Utilities */
+.eyebrow { font-family: var(--font-sans); font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--champagne-deep); }
+.link-underline { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size var(--dur-base) var(--ease-luxe); }
+.link-underline:hover { background-size: 100% 1px; }
+.img-zoom img { transition: transform 1.2s var(--ease-luxe); }
+.img-zoom:hover img { transform: scale(1.06); }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+/* ───────── Gold language: animated lines, shimmer, frames ───────── */
+:root { --gold-hi: #f3e2b0; --gold-mid: #d8bd7e; }
+
+.gold-line {
+  background: linear-gradient(90deg, var(--champagne-deep), var(--gold-hi), var(--champagne), var(--gold-hi), var(--champagne-deep));
+  background-size: 300% 100%;
+  animation: goldflow 5s linear infinite;
+}
+.gold-line-v {
+  background: linear-gradient(180deg, var(--champagne-deep), var(--gold-hi), var(--champagne), var(--gold-hi), var(--champagne-deep));
+  background-size: 100% 300%;
+  animation: goldflow-v 5s linear infinite;
+}
+.gold-text {
+  background: linear-gradient(100deg, #b8934f 0%, var(--gold-hi) 30%, #c4a46a 50%, var(--gold-hi) 70%, #b8934f 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: goldtext 6s ease-in-out infinite;
+}
+@keyframes goldflow { to { background-position: -300% 0; } }
+@keyframes goldflow-v { to { background-position: 0 -300%; } }
+@keyframes goldtext { 0%, 100% { background-position: 100% 0; } 50% { background-position: 0 0; } }
+
+/* Hover frame: two gold L-corners that grow until they close into a full frame */
+.gold-corners { position: relative; }
+.gold-corners::before, .gold-corners::after {
+  content: ""; position: absolute; width: 0; height: 0; pointer-events: none; z-index: 5;
+  transition: width 0.7s var(--ease-luxe), height 0.7s var(--ease-luxe);
+}
+.gold-corners::before { top: 10px; left: 10px; border-top: 1px solid var(--gold-mid); border-left: 1px solid var(--gold-mid); }
+.gold-corners::after { bottom: 10px; right: 10px; border-bottom: 1px solid var(--gold-mid); border-right: 1px solid var(--gold-mid); }
+.gold-corners:hover::before, .gold-corners:hover::after, .group:hover > .gold-corners::before, .group:hover > .gold-corners::after,
+.group:hover .gold-corners::before, .group:hover .gold-corners::after { width: calc(100% - 20px); height: calc(100% - 20px); }
+
+.pattern-diamond {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M24 4l20 20-20 20L4 24z' fill='none' stroke='%23c4a46a' stroke-opacity='.22'/%3E%3C/svg%3E");
+}
+
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(.6deg); } }
+@keyframes twinkle { 0%, 100% { opacity: 0; transform: scale(.4); } 50% { opacity: .95; transform: scale(1); } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes pulse-ring { 0% { transform: scale(.9); opacity: .6; } 100% { transform: scale(1.5); opacity: 0; } }
+.animate-float { animation: float 7s ease-in-out infinite; }
+.animate-twinkle { animation: twinkle 4s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 28s linear infinite; }
+.marquee-track { display: flex; width: max-content; animation: marquee 45s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Nav link: gold underline that draws from the left */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; transform: scaleX(0); transform-origin: left;
+  background: linear-gradient(90deg, var(--champagne-deep), var(--gold-hi), var(--champagne-deep)); transition: transform 0.5s var(--ease-luxe);
+}
+.nav-link:hover::after, .nav-link[aria-current="page"]::after { transform: scaleX(1); }
+
+/* Inner-page header band */
+.ph-band { background-color: color-mix(in srgb, var(--beige) 60%, transparent); }
+[data-theme="2"] .ph-band { background-image: linear-gradient(120deg, #0f3d2e 0%, #0b3026 55%, #08281d 100%); background-color: #0b3026; color: var(--ivory); border-color: rgb(196 164 106 / 0.45); }
+[data-theme="2"] .ph-band .eyebrow { color: var(--champagne); }
+[data-theme="2"] .ph-band .ph-intro { color: rgb(250 244 230 / 0.82); }
+[data-theme="2"] .ph-band h1 { color: #f6ecd3; }

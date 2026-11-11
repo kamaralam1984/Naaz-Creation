@@ -1,0 +1,10 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    ports: ["3000:3000"]
+    env_file: .env.production
+    volumes:
+      - karigar-data:/data      # database + uploaded images/videos — BACK THIS UP
+volumes:
+  karigar-data:
