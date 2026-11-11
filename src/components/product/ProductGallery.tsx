@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Play, X, ZoomIn } from "lucide-react";
 import { ProductArt } from "@/components/product/ProductArt";
+import { GiftCardArt } from "@/components/content/GiftCardArt";
 import { cn } from "@/lib/cn";
 import type { Product } from "@/server/types";
 
@@ -31,7 +32,8 @@ export function ProductGallery({ p }: { p: Product }) {
   const render = (sl: Slide, sizes: string, priority = false) =>
     sl.kind === "video" ? <video src={sl.src} controls playsInline preload="metadata" className="h-full w-full bg-charcoal object-contain" />
     : sl.kind === "image" ? <Image src={sl.src} alt={p.name} fill sizes={sizes} priority={priority} className="object-contain" />
-    : <ProductArt tone={sl.i % 2 ? p.alt_tone : p.tone} alt={sl.i % 2 === 1} kind={p.kind === "giftcard" ? "default" : p.category_slug ?? "default"} label={`${p.name} — view ${sl.i + 1}`} />;
+    : p.kind === "giftcard" ? <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-b from-beige to-[#e2d6c2] p-3 sm:p-6"><GiftCardArt skin={sl.i} /></div>
+    : <ProductArt tone={sl.i % 2 ? p.alt_tone : p.tone} alt={sl.i % 2 === 1} kind={p.category_slug ?? "default"} label={`${p.name} — view ${sl.i + 1}`} />;
 
   const thumb = (sl: Slide, k: number) => (
     <button key={k} onClick={() => setI(k)} aria-label={`Show ${sl.kind === "video" ? "video" : `image ${k + 1}`}`} aria-current={k === i}
