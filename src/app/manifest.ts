@@ -3,8 +3,8 @@ import type { MetadataRoute } from "next";
 /** Makes the storefront installable ("Add to Home Screen") and opens it like a native app, without browser chrome. */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Naaz Creation — Handcrafted by India's master artisans",
-    short_name: "Naaz Creation",
+    name: "Nazi Creation — Handcrafted by India's master artisans",
+    short_name: "Nazi Creation",
     description: "Handcrafted Indian home décor, art and gifts.",
     id: "/",
     start_url: "/",

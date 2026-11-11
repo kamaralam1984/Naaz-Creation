@@ -1,6 +1,6 @@
-/* Naaz Creation service worker — lets the site install as an app and keeps images/static assets snappy.
+/* Nazi Creation service worker — lets the site install as an app and keeps images/static assets snappy.
    Pages themselves are always fetched fresh (prices, stock and carts must never be stale). */
-const CACHE = "naaz-static-v1";
+const CACHE = "nazi-static-v2";
 self.addEventListener("install", (e) => { self.skipWaiting(); });
 self.addEventListener("activate", (e) => {
   e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim()));

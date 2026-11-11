@@ -7,7 +7,7 @@ import { JsonLd, breadcrumbJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 import { inr } from "@/lib/format";
 
 export const dynamic = "force-dynamic";
-export const metadata = pageMeta({ title: "Shipping & Delivery", description: "Shipping rates, delivery timelines and international delivery for handcrafted Naaz Creation orders.", path: "/help/shipping" });
+export const metadata = pageMeta({ title: "Shipping & Delivery", description: "Shipping rates, delivery timelines and international delivery for handcrafted Nazi Creation orders.", path: "/help/shipping" });
 
 export default function Shipping() {
   const s = getSettings();

@@ -42,7 +42,7 @@ export function Footer({ social, whatsapp }: { social: { instagram: string; face
           ))}
         </div>
       </Container>
-      <p aria-hidden className="gold-text pointer-events-none select-none text-center font-serif text-[clamp(3rem,13vw,11rem)] uppercase leading-none tracking-[0.08em] opacity-[0.18]">Naaz Creation</p>
+      <p aria-hidden className="gold-text pointer-events-none select-none text-center font-serif text-[clamp(3rem,13vw,11rem)] uppercase leading-none tracking-[0.08em] opacity-[0.18]">Nazi Creation</p>
       <div className="relative border-t border-champagne/25">
         <Container className="flex flex-col gap-3 py-6 text-xs text-ivory/60 sm:flex-row sm:justify-between sm:pr-32">
           <p>© <Year /> {site.name}. All rights reserved.</p>

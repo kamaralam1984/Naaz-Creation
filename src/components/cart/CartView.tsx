@@ -45,7 +45,7 @@ export function CartView() {
                   {l.variantLabel && <p className="mt-1 text-sm text-charcoal/60">{l.variantLabel}</p>}
                   {l.meta?.recipientEmail && <p className="mt-1 text-xs text-charcoal/60">For {l.meta.recipientEmail}</p>}
                   <p className="mt-1 text-xs text-charcoal/50"><Price inr={l.price} /> each</p>
-                  {l.error && <p className="mt-2 text-sm text-burgundy" role="alert">{l.error}</p>}
+                  {l.error && <p className="mt-2 text-sm text-danger" role="alert">{l.error}</p>}
                   <div className="mt-auto flex items-center gap-5 pt-4">
                     <div className="flex items-center border border-charcoal/30" role="group" aria-label={`Quantity for ${l.name}`}>
                       <button aria-label="Decrease quantity" className="p-3" onClick={() => setQty(key, l.qty - 1)}><Minus size={13} /></button>
@@ -74,7 +74,7 @@ export function CartView() {
         <div className={loading ? "opacity-60" : ""}>{quote && <OrderSummary q={quote} compact />}</div>
         <p className="mt-2 text-xs text-charcoal/55">Shipping is calculated at checkout.</p>
         <Button href="/checkout" size="lg" className="mt-5 w-full" aria-disabled={!quote?.ok}>Checkout</Button>
-        {quote && !quote.ok && <p className="mt-3 text-xs text-burgundy" role="alert">Please fix the highlighted items before checking out.</p>}
+        {quote && !quote.ok && <p className="mt-3 text-xs text-danger" role="alert">Please fix the highlighted items before checking out.</p>}
       </aside>
     </div>
   );

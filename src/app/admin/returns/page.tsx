@@ -19,7 +19,7 @@ export default async function AdminReturns({ searchParams }: PageProps<"/admin/r
     <>
       <PageHeader title="Returns & refunds" sub="Review customer return requests and issue refunds" />
       {first(sp.notice) && <p role="status" className="mb-4 border border-green-800/30 bg-green-50 px-4 py-3 text-sm text-green-900">{first(sp.notice)}</p>}
-      {first(sp.err) && <p role="alert" className="mb-4 border border-burgundy/40 bg-burgundy/5 px-4 py-3 text-sm text-burgundy">{first(sp.err)}</p>}
+      {first(sp.err) && <p role="alert" className="mb-4 border border-danger/40 bg-danger/5 px-4 py-3 text-sm text-danger">{first(sp.err)}</p>}
       <nav className="mb-5 flex flex-wrap gap-2" aria-label="Filter by status">
         {TABS.map((t) => <Link key={t} href={t ? `/admin/returns?status=${t}` : "/admin/returns"} className={cn("border px-3 py-1.5 text-xs uppercase tracking-[0.14em]", status === t ? "border-charcoal bg-charcoal text-ivory" : "border-charcoal/30 hover:border-charcoal")}>{t || "All"}</Link>)}
       </nav>

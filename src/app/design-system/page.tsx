@@ -17,7 +17,7 @@ export default function DesignSystem() {
     <Container className="space-y-24 py-20">
       <Reveal>
         <p className="eyebrow">Design foundation</p>
-        <h1 className="mt-4 text-[length:var(--text-display)]">Naaz <em className="text-burgundy">Creation</em></h1>
+        <h1 className="mt-4 text-[length:var(--text-display)]">Nazi <em className="text-burgundy">Creation</em></h1>
         <p className="mt-6 max-w-xl text-charcoal/70">Dark text on warm backgrounds. Serif for voice, sans for clarity. Generous whitespace, soft warm shadows, no glow.</p>
       </Reveal>
 

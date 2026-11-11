@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
-/* ───────── Naaz Creation design tokens ───────── */
+/* ───────── Nazi Creation design tokens ───────── */
 :root {
   --ivory: #f8f5ef;
   --champagne: #c4a46a;
   --champagne-deep: #9a7b45; /* AA-safe gold for text on ivory */
   --burgundy: #572e35;
   --forest-deep: #0a2c21;
+  --danger: #b3261e; /* errors & destructive actions — must never look like the brand green */
   --cream: #f7f1e3;
   /* chrome tokens — Theme 1 */
   --header-bg: #f8f5ef; --header-fg: #26231f; --header-accent: #9a7b45; --footer-bg: #26231f;
@@ -25,6 +26,7 @@
   --color-champagne: var(--champagne);
   --color-champagne-deep: var(--champagne-deep);
   --color-burgundy: var(--burgundy);
+  --color-danger: var(--danger);
   --color-charcoal: var(--charcoal);
   --color-beige: var(--beige);
 

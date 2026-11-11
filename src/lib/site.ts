@@ -1,5 +1,5 @@
 export const site = {
-  name: "Naaz Creation",
+  name: "Nazi Creation",
   tagline: "Handcrafted by India's master artisans",
   description:
     "Luxury handcrafted home décor, golden straw art, Madhubani paintings, mirror-work, hand-smocked cushions and heirloom gifts — made by hand, delivered worldwide.",

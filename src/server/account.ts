@@ -1,7 +1,7 @@
 import { all, get, run, tx } from "./db";
 import type { Address } from "./types";
 
-export type FormState = { error?: string; fieldErrors?: Record<string, string>; ok?: boolean; message?: string };
+export type FormState = { error?: string; fieldErrors?: Record<string, string>; ok?: boolean; message?: string; /** Non-secret values to re-fill the form with after a failed submit (React clears uncontrolled fields). */ values?: Record<string, string> };
 
 /** Only same-site relative paths are allowed as post-login destinations. */
 export function safeNext(next: unknown, fallback: string): string {

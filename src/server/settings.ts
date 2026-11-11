@@ -1,8 +1,8 @@
 import { all, get, run } from "./db";
 
 export const SETTING_DEFAULTS = {
-  site_name: "Naaz Creation",
-  support_email: "care@naazcreation.com",
+  site_name: "Nazi Creation",
+  support_email: "care@nazicreation.com",
   support_phone: "+91 90000 00000",
   whatsapp_number: "919000000000",
   announcement: "Free shipping across India above ₹3,000",
@@ -21,13 +21,13 @@ export const SETTING_DEFAULTS = {
   loyalty_max_redeem_pct: "20",
   referral_reward_points: "250",
   return_window_days: "7",
-  instagram: "https://instagram.com/naazcreation",
-  facebook: "https://facebook.com/naazcreation",
-  pinterest: "https://pinterest.com/naazcreation",
+  instagram: "https://instagram.com/nazicreation",
+  facebook: "https://facebook.com/nazicreation",
+  pinterest: "https://pinterest.com/nazicreation",
   youtube: "",
   logo_url: "",
   payment_cod: "0",
-  email_from: "Naaz Creation <orders@naazcreation.com>",
+  email_from: "Nazi Creation <orders@nazicreation.com>",
   // Shipping zones: first digit of Indian PIN → estimated days (standard)
   delivery_days_default: "6",
 } as const;

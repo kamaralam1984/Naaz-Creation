@@ -15,7 +15,7 @@ export default async function AdminDashboard({ searchParams }: PageProps<"/admin
   return (
     <>
       <PageHeader title="Dashboard" sub="How the house is doing" />
-      {sp.denied && <p role="alert" className="mb-6 border border-burgundy/40 bg-burgundy/5 px-4 py-3 text-sm text-burgundy">You don&apos;t have access to that section.</p>}
+      {sp.denied && <p role="alert" className="mb-6 border border-danger/40 bg-danger/5 px-4 py-3 text-sm text-danger">You don&apos;t have access to that section.</p>}
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <StatCard label="Total revenue" value={inr(d.revenue)} hint={`${inr(d.gross)} gross · ${inr(d.refunds)} refunded`} />
         <StatCard label="Total orders" value={d.orders} hint="Paid orders" />

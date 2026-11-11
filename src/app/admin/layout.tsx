@@ -35,7 +35,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     <div className="min-h-screen bg-[#f3efe7] text-charcoal lg:grid lg:grid-cols-[240px_1fr]">
       <aside className="border-b border-charcoal/10 bg-charcoal text-ivory lg:min-h-screen lg:border-b-0">
         <div className="flex items-center justify-between p-5 lg:block">
-          <Link href="/admin" className="font-serif text-xl uppercase tracking-[0.12em]">Naaz <span className="text-champagne">Admin</span></Link>
+          <Link href="/admin" className="font-serif text-xl uppercase tracking-[0.12em]">Nazi <span className="text-champagne">Admin</span></Link>
           <p className="mt-1 hidden text-xs text-ivory/60 lg:block">{user.name} · {user.role}</p>
         </div>
         <AdminNav items={items} />

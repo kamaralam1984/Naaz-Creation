@@ -29,7 +29,7 @@ export function GiftCardPurchase({ productId, variants }: { productId: number; v
         <div aria-hidden className="animate-spin-slow absolute -bottom-24 -right-24 h-72 w-72 rounded-full border border-dashed border-champagne/50" />
         <span aria-hidden className="gold-line absolute inset-x-0 top-0 h-px" /><span aria-hidden className="gold-line absolute inset-x-0 bottom-0 h-px" />
         <div className="absolute inset-0 flex flex-col justify-between p-8 text-ivory">
-          <div className="flex items-start justify-between"><p className="gold-text font-serif text-2xl uppercase tracking-[0.2em]">Naaz Creation</p><span aria-hidden className="h-8 w-11 rounded-[4px] bg-gradient-to-br from-[#f3e2b0] to-[#b8934f] opacity-90" /></div>
+          <div className="flex items-start justify-between"><p className="gold-text font-serif text-2xl uppercase tracking-[0.2em]">Nazi Creation</p><span aria-hidden className="h-8 w-11 rounded-[4px] bg-gradient-to-br from-[#f3e2b0] to-[#b8934f] opacity-90" /></div>
           <div><p className="eyebrow !text-champagne">Gift card</p><p className="mt-1 font-serif text-6xl">{v ? <Price inr={v.price} /> : "—"}</p></div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { getSettings } from "@/server/settings";
 import { pageMeta } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-export const metadata = pageMeta({ title: "Privacy Policy", description: "How Naaz Creation collects, uses and protects your personal information.", path: "/legal/privacy" });
+export const metadata = pageMeta({ title: "Privacy Policy", description: "How Nazi Creation collects, uses and protects your personal information.", path: "/legal/privacy" });
 
 export default function Privacy() {
   const s = getSettings();

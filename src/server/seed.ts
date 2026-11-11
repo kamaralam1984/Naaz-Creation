@@ -72,7 +72,7 @@ export function seedIfEmpty(d: DatabaseSync) {
         p.slug, p.name, desc, p.craft, p.material, JSON.stringify(p.colors), p.dims, p.weight, p.care ?? CARE[p.material] ?? "Handle with care and keep dry.", JSON.stringify(specs),
         p.cat, p.artisan, `KH-${String(1000 + n)}`, p.price, p.compare ?? null, p.variants ? p.variants.reduce((s, v) => s + v[2], 0) : p.stock, JSON.stringify(p.images),
         p.badge ?? null, p.tone, p.alt, p.featured ? 1 : 0, p.sold, `-${p.days} days`,
-        `${p.name} — Handcrafted ${p.craft} | Naaz Creation`, `${p.blurb.slice(0, 150)}`).lastInsertRowid);
+        `${p.name} — Handcrafted ${p.craft} | Nazi Creation`, `${p.blurb.slice(0, 150)}`).lastInsertRowid);
       p.variants?.forEach(([label, price, stock], i) => run("INSERT INTO variants(product_id,label,sku,price,stock,sort) VALUES(?,?,?,?,?,?)", pid, label, `KH-${1000 + n}-${i + 1}`, price, stock, i));
       p.cols.forEach((c) => run("INSERT INTO product_collections(product_id, collection_id) VALUES(?, ?)", pid, id("SELECT id FROM collections WHERE slug=?", c)));
       if (p.sold > 0) {
@@ -87,7 +87,7 @@ export function seedIfEmpty(d: DatabaseSync) {
     });
 
     // Gift card product (denominations are variants)
-    const gc = Number(run("INSERT INTO products(slug,name,description,kind,sku,price,stock,images,tone,alt_tone,craft,material,category_id) VALUES('gift-card','Naaz Creation Gift Card','Give the gift of choice. Delivered instantly by email, valid for 12 months, redeemable on anything in the house.','giftcard','KH-GIFT',1000,9999,'[]','brass','wine','Gift Card','Digital',NULL)").lastInsertRowid);
+    const gc = Number(run("INSERT INTO products(slug,name,description,kind,sku,price,stock,images,tone,alt_tone,craft,material,category_id) VALUES('gift-card','Nazi Creation Gift Card','Give the gift of choice. Delivered instantly by email, valid for 12 months, redeemable on anything in the house.','giftcard','KH-GIFT',1000,9999,'[]','brass','wine','Gift Card','Digital',NULL)").lastInsertRowid);
     [500, 1000, 2500, 5000].forEach((v, i) => run("INSERT INTO variants(product_id,label,sku,price,stock,sort) VALUES(?,?,?,?,?,?)", gc, `₹${v.toLocaleString("en-IN")}`, `KH-GIFT-${v}`, v, 9999, i));
 
     run("INSERT INTO coupons(code,description,type,value,min_order,max_discount) VALUES('WELCOME10','10% off your first order over ₹2,000','percent',10,2000,500)");
@@ -99,7 +99,7 @@ export function seedIfEmpty(d: DatabaseSync) {
     run("INSERT INTO settings(key,value) VALUES('announcement','Free shipping across India above ₹3,000')");
 
     // Admin account (change the password immediately in production!)
-    const email = (process.env.ADMIN_EMAIL ?? "admin@naazcreation.com").toLowerCase();
+    const email = (process.env.ADMIN_EMAIL ?? "admin@nazicreation.com").toLowerCase();
     let pw = process.env.ADMIN_PASSWORD;
     if (!pw) {
       if (process.env.NODE_ENV === "production") { pw = randomBytes(9).toString("base64url"); console.warn(`\n[karigar-house] ADMIN_PASSWORD not set. Generated one-time admin password for ${email}: ${pw}\n`); }

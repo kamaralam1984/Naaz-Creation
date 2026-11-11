@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 import { Field, Notice } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
@@ -15,9 +15,12 @@ type Action = (s: FormState, fd: FormData) => Promise<FormState>;
 const init: FormState = {};
 
 export function FormMessages({ s }: { s: FormState }) {
-  if (s.ok && s.message) return <Notice tone="success">{s.message}</Notice>;
-  if (s.error && !s.fieldErrors) return <Notice tone="error">{s.error}</Notice>;
-  if (s.error && s.fieldErrors && !Object.keys(s.fieldErrors).length) return <Notice tone="error">{s.error}</Notice>;
+  const ref = useRef<HTMLDivElement>(null);
+  const show = (s.ok && s.message) || s.error;
+  // After a failed submit the page can be scrolled far from the message (esp. on phones) — bring it into view.
+  useEffect(() => { if (show) ref.current?.scrollIntoView({ behavior: "smooth", block: "center" }); }, [s, show]);
+  if (s.ok && s.message) return <div ref={ref}><Notice tone="success">{s.message}</Notice></div>;
+  if (s.error) return <div ref={ref}><Notice tone="error">{s.error}</Notice></div>;
   return null;
 }
 
@@ -27,7 +30,7 @@ export function LoginForm({ action, next }: { action: Action; next?: string }) {
     <form action={a} className="space-y-5" noValidate>
       <FormMessages s={s} />
       {next && <input type="hidden" name="next" value={next} />}
-      <Field label="Email" name="email" type="email" autoComplete="email" required />
+      <Field label="Email" name="email" type="email" autoComplete="email" required defaultValue={s.values?.email} key={`e-${s.values?.email ?? ""}-${s.error ?? ""}`} />
       <Field label="Password" name="password" type="password" autoComplete="current-password" required />
       <div className="flex items-center justify-between text-sm"><Link href="/forgot-password" className="link-underline">Forgot password?</Link></div>
       <Submit className="w-full">Sign in</Submit>
@@ -42,11 +45,11 @@ export function RegisterForm({ action, referral, next }: { action: Action; refer
     <form action={a} className="space-y-5" noValidate>
       <FormMessages s={s} />
       {next && <input type="hidden" name="next" value={next} />}
-      <Field label="Full name" name="name" autoComplete="name" required error={fe.name} />
-      <Field label="Email" name="email" type="email" autoComplete="email" required error={fe.email} />
-      <Field label="Mobile number" name="phone" type="tel" autoComplete="tel" error={fe.phone} hint="Optional — used only for delivery updates." />
+      <Field label="Full name" name="name" autoComplete="name" required error={fe.name} defaultValue={s.values?.name} key={`n-${s.error ?? ""}`} />
+      <Field label="Email" name="email" type="email" autoComplete="email" required error={fe.email} defaultValue={s.values?.email} key={`e-${s.error ?? ""}`} />
+      <Field label="Mobile number" name="phone" type="tel" autoComplete="tel" error={fe.phone} defaultValue={s.values?.phone} key={`p-${s.error ?? ""}`} hint="Optional — used only for delivery updates." />
       <Field label="Password" name="password" type="password" autoComplete="new-password" required error={fe.password} hint="At least 8 characters, with letters and numbers." />
-      <Field label="Referral code" name="referral" defaultValue={referral} error={fe.referral} hint="Optional — you both earn loyalty points on your first order." />
+      <Field label="Referral code" name="referral" defaultValue={s.values?.referral ?? referral} key={`r-${s.error ?? ""}`} error={fe.referral} hint="Optional — you both earn loyalty points on your first order." />
       <Submit className="w-full">Create account</Submit>
     </form>
   );

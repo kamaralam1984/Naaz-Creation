@@ -6,7 +6,7 @@ import { getProductBySlug, getVariants } from "@/server/catalog";
 import { JsonLd, breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-export const metadata = pageMeta({ title: "Gift Cards", description: "Give the gift of choice. Naaz Creation gift cards are delivered instantly by email and valid for 12 months.", path: "/gift-cards" });
+export const metadata = pageMeta({ title: "Gift Cards", description: "Give the gift of choice. Nazi Creation gift cards are delivered instantly by email and valid for 12 months.", path: "/gift-cards" });
 
 export default function GiftCards() {
   const p = getProductBySlug("gift-card");

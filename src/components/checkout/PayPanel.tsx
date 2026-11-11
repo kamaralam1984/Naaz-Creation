@@ -42,7 +42,7 @@ export function PayPanel({ number, token, amount, email, phone, auto, failed }: 
     if (g.provider === "mock") { setMock(true); setBusy(false); return; }
     if (!(await loadScript()) || !window.Razorpay) { setMsg({ tone: "error", text: "Couldn't load the payment window. Check your connection and try again." }); setBusy(false); return; }
     const rz = new window.Razorpay({
-      key: g.keyId, amount: Math.round((g.amount ?? amount) * 100), currency: "INR", name: "Naaz Creation", description: `Order ${number}`, order_id: g.orderId,
+      key: g.keyId, amount: Math.round((g.amount ?? amount) * 100), currency: "INR", name: "Nazi Creation", description: `Order ${number}`, order_id: g.orderId,
       prefill: { email, contact: phone }, theme: { color: "#572e35" },
       handler: async (r: { razorpay_order_id: string; razorpay_payment_id: string; razorpay_signature: string }) => {
         setMsg({ tone: "info", text: "Confirming your payment…" });

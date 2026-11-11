@@ -64,7 +64,7 @@ export function ProductForm({ initial, categories, artisans, collections, action
       <input type="hidden" name="images" value={JSON.stringify(images)} />
       <input type="hidden" name="specs" value={JSON.stringify(specs)} />
       <input type="hidden" name="variants" value={JSON.stringify(variants.map((v) => ({ id: v.id, label: v.label, sku: v.sku || null, price: v.price === null || (v.price as unknown) === "" ? null : Number(v.price), stock: Number(v.stock) || 0 })))} />
-      {state.error && <p role="alert" className="border border-burgundy/40 bg-burgundy/5 px-4 py-3 text-sm text-burgundy">{state.error}</p>}
+      {state.error && <p role="alert" className="border border-danger/40 bg-danger/5 px-4 py-3 text-sm text-danger">{state.error}</p>}
 
       <Panel title="Basics">
         <div className="grid gap-4 md:grid-cols-2">
@@ -134,7 +134,7 @@ export function ProductForm({ initial, categories, artisans, collections, action
           <button type="button" onClick={() => vidRef.current?.click()} disabled={busy === "video"} className="inline-flex h-10 items-center gap-2 self-end border border-charcoal/40 px-4 text-xs uppercase tracking-[0.14em]"><Upload size={14} />{busy === "video" ? "Uploading…" : "Upload MP4/WebM"}</button>
           <input ref={vidRef} type="file" accept="video/mp4,video/webm" hidden onChange={(e) => addVideo(e.target.files)} />
         </div>
-        {upErr && <p role="alert" className="mt-3 text-sm text-burgundy">{upErr}</p>}
+        {upErr && <p role="alert" className="mt-3 text-sm text-danger">{upErr}</p>}
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           <div><label className={labelCls} htmlFor="tone">Illustration tone (fallback)</label><select id="tone" name="tone" defaultValue={initial.tone} className={fieldCls}>{TONES.map((t) => <option key={t}>{t}</option>)}</select></div>
           <div><label className={labelCls} htmlFor="alt_tone">Alternate tone</label><select id="alt_tone" name="alt_tone" defaultValue={initial.alt_tone} className={fieldCls}>{TONES.map((t) => <option key={t}>{t}</option>)}</select></div>

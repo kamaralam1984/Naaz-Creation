@@ -8,7 +8,7 @@ import { getArtisans } from "@/server/catalog";
 import { JsonLd, breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-export const metadata = pageMeta({ title: "Our Artisans", description: "Meet the Dokra casters, copper smiths, potters, painters and weavers behind every Naaz Creation piece.", path: "/artisans" });
+export const metadata = pageMeta({ title: "Our Artisans", description: "Meet the Dokra casters, copper smiths, potters, painters and weavers behind every Nazi Creation piece.", path: "/artisans" });
 
 export default function Artisans() {
   const list = getArtisans();

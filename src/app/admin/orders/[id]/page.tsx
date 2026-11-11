@@ -27,7 +27,7 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
       <PageHeader title={`Order ${o.number}`} sub={`Placed ${dateFmt(o.created_at)}`}
         actions={<><Link href={`/admin/orders/${o.id}/invoice`} className={btnOutline} target="_blank">Invoice</Link><Link href={`/admin/orders/${o.id}/label`} className={btnOutline} target="_blank">Shipping label</Link><Link href="/admin/orders" className="link-underline self-center text-xs uppercase tracking-[0.16em]">← Orders</Link></>} />
       {first(sp.notice) && <p role="status" className="mb-4 border border-green-800/30 bg-green-50 px-4 py-3 text-sm text-green-900">{first(sp.notice)}</p>}
-      {first(sp.err) && <p role="alert" className="mb-4 border border-burgundy/40 bg-burgundy/5 px-4 py-3 text-sm text-burgundy">{first(sp.err)}</p>}
+      {first(sp.err) && <p role="alert" className="mb-4 border border-danger/40 bg-danger/5 px-4 py-3 text-sm text-danger">{first(sp.err)}</p>}
 
       <div className="grid gap-6 xl:grid-cols-[1fr_380px]">
         <div className="space-y-6">

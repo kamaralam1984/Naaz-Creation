@@ -19,7 +19,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
       <p className="eyebrow">Welcome back</p>
       <h1 className="mt-2 text-4xl">Sign in</h1>
       <div className="mt-8"><LoginForm action={loginAction} next={next || undefined} /></div>
-      <p className="mt-8 text-sm text-charcoal/70">New to Naaz Creation? <Link href={next ? `/register?next=${encodeURIComponent(next)}` : "/register"} className="link-underline text-charcoal">Create an account</Link></p>
+      <p className="mt-8 text-sm text-charcoal/70">New to Nazi Creation? <Link href={next ? `/register?next=${encodeURIComponent(next)}` : "/register"} className="link-underline text-charcoal">Create an account</Link></p>
     </>
   );
 }

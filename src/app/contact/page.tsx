@@ -6,7 +6,7 @@ import { getSettings } from "@/server/settings";
 import { JsonLd, breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-export const metadata = pageMeta({ title: "Contact Us", description: "Questions about an order, a piece or a custom request? Reach the Naaz Creation team by form, email, phone or WhatsApp.", path: "/contact" });
+export const metadata = pageMeta({ title: "Contact Us", description: "Questions about an order, a piece or a custom request? Reach the Nazi Creation team by form, email, phone or WhatsApp.", path: "/contact" });
 
 export default function Contact() {
   const s = getSettings();

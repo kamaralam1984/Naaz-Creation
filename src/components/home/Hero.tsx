@@ -47,7 +47,7 @@ export function Hero({ banner }: { banner?: { title: string; subtitle: string | 
         <motion.div variants={stagger(0.14, 0.2)} initial="hidden" animate="show" className="max-w-4xl">
           <motion.div variants={fadeUp} className="flex items-center gap-4"><GoldRule width="w-14" delay={0.5} /><p className="eyebrow !text-champagne">Handcrafted in India</p></motion.div>
           <motion.p variants={fadeUp} aria-hidden className="mt-4 font-serif uppercase leading-[0.95] tracking-[0.06em] text-ivory text-[clamp(3rem,7.4vw,7rem)]">
-            Naaz <span className="gold-text block">Creation</span>
+            Nazi <span className="gold-text block">Creation</span>
           </motion.p>
           <motion.h1 variants={fadeUp} className="mt-8 text-[length:var(--text-h2)]">
             <span className="sr-only">{site.name} — </span>

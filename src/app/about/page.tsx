@@ -6,7 +6,7 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Placeholder } from "@/components/home/Placeholder";
 import { JsonLd, breadcrumbJsonLd, organizationJsonLd, pageMeta } from "@/lib/seo";
 
-export const metadata = pageMeta({ title: "Our Story", description: "Naaz Creation brings the work of India's master artisans — Dokra casters, copper smiths, potters and painters — to homes around the world.", path: "/about" });
+export const metadata = pageMeta({ title: "Our Story", description: "Nazi Creation brings the work of India's master artisans — Dokra casters, copper smiths, potters and painters — to homes around the world.", path: "/about" });
 
 const values = [
   ["Made by hand", "No moulds, no assembly lines. Every piece is shaped, cast, carved or painted by one pair of hands."],
@@ -26,7 +26,7 @@ export default function About() {
         <div className="space-y-5 leading-relaxed text-charcoal/80">
           <Reveal><h2 className="font-serif text-4xl text-charcoal">From the workshop to your table</h2></Reveal>
           <Reveal delay={0.1}><p>India's craft traditions are thousands of years old — lost-wax casting in Bengal, Madhubani painting in Bihar, hammered copper in Jaipur. Yet the people carrying them forward often sell through layers of middlemen and see little of the final price.</p></Reveal>
-          <Reveal delay={0.2}><p>Naaz Creation works directly with workshops and cooperatives, tells their stories on every product page, and ships their work around the world, so that the hand that made it is the first name you meet.</p></Reveal>
+          <Reveal delay={0.2}><p>Nazi Creation works directly with workshops and cooperatives, tells their stories on every product page, and ships their work around the world, so that the hand that made it is the first name you meet.</p></Reveal>
           <Reveal delay={0.3}><Button href="/artisans" variant="outline">Meet the artisans</Button></Reveal>
         </div>
       </Container>

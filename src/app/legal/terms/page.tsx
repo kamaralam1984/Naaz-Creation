@@ -5,7 +5,7 @@ import { getSettings } from "@/server/settings";
 import { pageMeta } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
-export const metadata = pageMeta({ title: "Terms & Conditions", description: "The terms that apply when you browse and buy from Naaz Creation.", path: "/legal/terms" });
+export const metadata = pageMeta({ title: "Terms & Conditions", description: "The terms that apply when you browse and buy from Nazi Creation.", path: "/legal/terms" });
 
 export default function Terms() {
   const s = getSettings();

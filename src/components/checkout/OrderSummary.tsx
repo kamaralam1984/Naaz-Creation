@@ -14,7 +14,7 @@ export function OrderSummary({ q, compact }: { q: Quote; compact?: boolean }) {
           {q.lines.map((l) => (
             <li key={`${l.productId}-${l.variantId}-${l.meta?.recipientEmail ?? ""}`} className="flex gap-4 py-4">
               <span className="relative h-20 w-16 shrink-0 overflow-hidden">{l.image ? <img src={l.image} alt="" className="h-full w-full object-contain" /> : <ProductArt tone={l.tone} kind={l.kind === "giftcard" ? "default" : l.categorySlug ?? "default"} />}<span className="absolute -right-0 -top-0 bg-charcoal px-1.5 text-[0.65rem] text-ivory">{l.qty}</span></span>
-              <div className="flex-1 text-sm"><p className="font-serif text-lg leading-tight">{l.name}</p>{l.variantLabel && <p className="text-xs text-charcoal/60">{l.variantLabel}</p>}{l.error && <p className="text-xs text-burgundy">{l.error}</p>}</div>
+              <div className="flex-1 text-sm"><p className="font-serif text-lg leading-tight">{l.name}</p>{l.variantLabel && <p className="text-xs text-charcoal/60">{l.variantLabel}</p>}{l.error && <p className="text-xs text-danger">{l.error}</p>}</div>
               <p className="text-sm"><Price inr={l.lineTotal} /></p>
             </li>
           ))}

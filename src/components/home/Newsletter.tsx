@@ -24,7 +24,7 @@ export function Newsletter({ source = "home" }: { source?: string }) {
         <input name="website" tabIndex={-1} autoComplete="off" aria-hidden className="hidden" />
         <Button type="submit" disabled={state === "busy"}>{state === "busy" ? "…" : "Subscribe"}</Button>
       </div>
-      {err && <p role="alert" className="mt-2 text-sm text-burgundy">{err}</p>}
+      {err && <p role="alert" className="mt-2 text-sm text-danger">{err}</p>}
     </form>
   );
 }

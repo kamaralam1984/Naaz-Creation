@@ -41,7 +41,7 @@ export function StatusBadge({ status }: { status: string }) {
 export const tableCls = "w-full text-left text-sm [&_th]:border-b [&_th]:border-charcoal/15 [&_th]:px-3 [&_th]:py-2 [&_th]:text-[0.68rem] [&_th]:font-medium [&_th]:uppercase [&_th]:tracking-[0.14em] [&_th]:text-charcoal/60 [&_td]:border-b [&_td]:border-charcoal/8 [&_td]:px-3 [&_td]:py-3 [&_tr:hover_td]:bg-beige/30";
 export const btnCls = "inline-flex h-10 items-center justify-center gap-2 bg-charcoal px-4 text-xs font-medium uppercase tracking-[0.14em] text-ivory transition-colors hover:bg-burgundy disabled:opacity-50";
 export const btnOutline = "inline-flex h-10 items-center justify-center gap-2 border border-charcoal/40 px-4 text-xs font-medium uppercase tracking-[0.14em] transition-colors hover:bg-charcoal hover:text-ivory";
-export const btnDanger = "inline-flex h-10 items-center justify-center gap-2 border border-burgundy/50 px-4 text-xs font-medium uppercase tracking-[0.14em] text-burgundy transition-colors hover:bg-burgundy hover:text-ivory";
+export const btnDanger = "inline-flex h-10 items-center justify-center gap-2 border border-danger/50 px-4 text-xs font-medium uppercase tracking-[0.14em] text-danger transition-colors hover:bg-danger hover:text-ivory";
 export const fieldCls = "h-10 w-full border border-charcoal/25 bg-white px-3 text-sm focus:border-charcoal focus:outline-none";
 export const labelCls = "mb-1 block text-[0.68rem] font-medium uppercase tracking-[0.14em] text-charcoal/65";
 

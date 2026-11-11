@@ -12,11 +12,12 @@ const fieldErrors = (e: z.ZodError) => Object.fromEntries(e.issues.map((i) => [S
 export async function loginAction(_: FormState, fd: FormData): Promise<FormState> {
   const email = emailSchema.safeParse(field(fd, "email"));
   const password = field(fd, "password");
-  if (!email.success || !password) return { error: "Enter your email and password." };
+  const keep = { email: field(fd, "email") };
+  if (!email.success || !password) return { error: "Enter your email and password.", values: keep };
   const ip = clientIp(await headers());
-  if (!rateLimit(`login:${ip}:${email.data}`, 5, 60_000).ok) return { error: "Too many attempts. Please wait a minute and try again." };
+  if (!rateLimit(`login:${ip}:${email.data}`, 5, 60_000).ok) return { error: "Too many attempts. Please wait a minute and try again.", values: keep };
   const r = await login(email.data, password);
-  if ("error" in r) return { error: r.error };
+  if ("error" in r) return { error: r.error, values: keep };
   redirect(safeNext(field(fd, "next") || undefined, r.user.role === "customer" ? "/account" : "/admin"));
 }
 
@@ -30,11 +31,12 @@ const registerSchema = z.object({
 
 export async function registerAction(_: FormState, fd: FormData): Promise<FormState> {
   const p = registerSchema.safeParse({ name: field(fd, "name"), email: field(fd, "email"), phone: field(fd, "phone"), password: field(fd, "password"), referral: field(fd, "referral") });
-  if (!p.success) return { fieldErrors: fieldErrors(p.error), error: flat(p.error) };
+  const keep = { name: field(fd, "name"), email: field(fd, "email"), phone: field(fd, "phone"), referral: field(fd, "referral") };
+  if (!p.success) return { fieldErrors: fieldErrors(p.error), error: flat(p.error), values: keep };
   const ip = clientIp(await headers());
-  if (!rateLimit(`register:${ip}`, 5, 600_000).ok) return { error: "Too many sign-ups from this network. Try again in a few minutes." };
+  if (!rateLimit(`register:${ip}`, 5, 600_000).ok) return { error: "Too many sign-ups from this network. Try again in a few minutes.", values: keep };
   const r = await registerUser({ name: p.data.name, email: p.data.email, phone: p.data.phone || null, password: p.data.password, referralCode: p.data.referral || null });
-  if ("error" in r) return { error: r.error, fieldErrors: { email: r.error } };
+  if ("error" in r) return { error: r.error, fieldErrors: { email: r.error }, values: keep };
   await createSession(r.user.id);
   redirect(safeNext(field(fd, "next") || undefined, "/account"));
 }

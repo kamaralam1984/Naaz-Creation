@@ -86,7 +86,7 @@ export function HeroCarousel() {
             <motion.p variants={{ hidden: { opacity: 0, y: 14 }, show: { opacity: 1, y: 0 }, out: { opacity: 0 } }} className="flex items-center gap-3 text-[0.72rem] font-medium uppercase tracking-[0.42em] text-ivory/90">
               {s.eyebrow}
             </motion.p>
-            <motion.p variants={{ hidden: { opacity: 0 }, show: { opacity: 1 }, out: { opacity: 0 } }} className="gold-text mt-3 font-serif text-base uppercase sm:mt-4 sm:text-xl tracking-[0.3em]">Naaz Creation</motion.p>
+            <motion.p variants={{ hidden: { opacity: 0 }, show: { opacity: 1 }, out: { opacity: 0 } }} className="gold-text mt-3 font-serif text-base uppercase sm:mt-4 sm:text-xl tracking-[0.3em]">Nazi Creation</motion.p>
             <h1 className="mt-4 font-serif text-[clamp(2.1rem,5.2vw,4.6rem)] font-normal italic leading-[1.02] text-[#f6ecd3]">
               {s.title.map((l, k) => (
                 <motion.span key={l} className="block" variants={{ hidden: { opacity: 0, y: 30, filter: "blur(6px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease, delay: 0.1 + k * 0.12 } }, out: { opacity: 0, transition: { duration: 0.25 } } }}>{l}</motion.span>

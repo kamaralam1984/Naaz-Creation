@@ -72,7 +72,7 @@ export function CartDrawer() {
                         <div className="flex flex-1 flex-col">
                           <Link href={`/product/${l.slug}`} onClick={closeDrawer} className="font-serif text-lg leading-tight">{l.name}</Link>
                           {l.variantLabel && <p className="text-xs text-charcoal/60">{l.variantLabel}</p>}
-                          {l.error && <p className="mt-1 text-xs text-burgundy">{l.error}</p>}
+                          {l.error && <p className="mt-1 text-xs text-danger">{l.error}</p>}
                           <div className="mt-auto flex items-center justify-between pt-3">
                             <div className="flex items-center border border-charcoal/25">
                               <button aria-label="Decrease quantity" className="p-2" onClick={() => setQty(key, l.qty - 1)}><Minus size={12} /></button>

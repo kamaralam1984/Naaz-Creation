@@ -27,7 +27,7 @@ export function MarketingImageField({ name, label, initial }: { name: string; la
           <input type="file" accept="image/jpeg,image/png,image/webp,image/avif" onChange={(e) => onFile(e.target.files?.[0])} aria-label={`Upload ${label}`} />
           {url && <button type="button" onClick={() => setUrl("")} className="mt-1 block text-xs text-burgundy underline">Remove</button>}
           {busy && <p className="text-xs text-charcoal/60">Uploading…</p>}
-          {err && <p role="alert" className="text-xs text-burgundy">{err}</p>}
+          {err && <p role="alert" className="text-xs text-danger">{err}</p>}
         </div>
       </div>
     </div>

@@ -252,11 +252,11 @@ export default async function Home() {
     gallery: (
       <section className="pt-24 lg:pt-32">
         <Container>
-          <SectionHead eyebrow="@naazcreation" title="In the wild" />
+          <SectionHead eyebrow="@nazicreation" title="In the wild" />
           <ul className="mt-12 grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
             {gallery.map((tone, i) => (
               <li key={i}><Reveal delay={(i % 4) * 0.06}>
-                <a href="https://instagram.com/naazcreation" target="_blank" rel="noopener noreferrer" className="group relative block aspect-square overflow-hidden" aria-label={`Instagram post ${i + 1}`}>
+                <a href="https://instagram.com/nazicreation" target="_blank" rel="noopener noreferrer" className="group relative block aspect-square overflow-hidden" aria-label={`Instagram post ${i + 1}`}>
                   <div className="h-full transition-transform duration-[1200ms] ease-[var(--ease-luxe)] group-hover:scale-[1.08]"><Placeholder tone={tone} label={`Gallery image ${i + 1}`} /></div>
                   <span className="absolute inset-0 flex items-center justify-center bg-charcoal/40 text-ivory opacity-0 transition-opacity duration-[400ms] group-hover:opacity-100"><Camera size={26} aria-hidden /></span>
                 </a>
@@ -363,7 +363,7 @@ export default async function Home() {
             <span aria-hidden className="gold-line absolute inset-x-0 top-0 h-px" /><span aria-hidden className="gold-line absolute inset-x-0 bottom-0 h-px" />
             <div aria-hidden className="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-champagne/10 blur-3xl" />
             <Container className="py-20 lg:py-28">
-              <Reveal className="max-w-2xl"><p className="eyebrow flex items-center gap-3 !text-champagne"><span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-champagne" />The Naaz promise</p><h2 className="mt-3 text-[length:var(--text-h2)]">Slow-made, by the hands that know the <em className="gold-text">craft</em>.</h2><GoldRule className="mt-6" width="w-28" delay={0.2} /></Reveal>
+              <Reveal className="max-w-2xl"><p className="eyebrow flex items-center gap-3 !text-champagne"><span aria-hidden className="h-1.5 w-1.5 rotate-45 bg-champagne" />The Nazi promise</p><h2 className="mt-3 text-[length:var(--text-h2)]">Slow-made, by the hands that know the <em className="gold-text">craft</em>.</h2><GoldRule className="mt-6" width="w-28" delay={0.2} /></Reveal>
               <ul className="mt-14 grid gap-10 md:grid-cols-3">{promises.map(({ icon: Icon, title, body }, j) => (<li key={title}><Reveal delay={j * 0.1}><GoldRule width="w-full" className="mb-8" delay={j * 0.2} /><span className="relative inline-flex h-14 w-14 items-center justify-center"><span aria-hidden className="animate-spin-slow absolute inset-0 rounded-full border border-dashed border-champagne/70" /><Icon size={26} strokeWidth={1.25} className="text-champagne" aria-hidden /></span><h3 className="mt-5 font-serif text-3xl">{title}</h3><p className="mt-3 text-sm leading-relaxed text-ivory/75">{body}</p></Reveal></li>))}</ul>
             </Container>
           </section>);

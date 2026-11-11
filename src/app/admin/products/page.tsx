@@ -22,7 +22,7 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
     <>
       <PageHeader title="Products" sub={`${total} product${total === 1 ? "" : "s"}`} actions={<Link href="/admin/products/new" className={btnCls}>+ New product</Link>} />
       {first(sp.notice) && <p role="status" className="mb-4 border border-green-800/30 bg-green-50 px-4 py-3 text-sm text-green-900">{first(sp.notice)}</p>}
-      {first(sp.err) && <p role="alert" className="mb-4 border border-burgundy/40 bg-burgundy/5 px-4 py-3 text-sm text-burgundy">{first(sp.err)}</p>}
+      {first(sp.err) && <p role="alert" className="mb-4 border border-danger/40 bg-danger/5 px-4 py-3 text-sm text-danger">{first(sp.err)}</p>}
       <form className="mb-5 grid gap-3 sm:grid-cols-[1fr_180px_160px_auto]" role="search">
         <input name="q" defaultValue={q} placeholder="Search name, SKU, craft" className={fieldCls} aria-label="Search products" />
         <select name="cat" defaultValue={cat} className={fieldCls} aria-label="Category"><option value="">All categories</option>{cats.map((c) => <option key={c.slug} value={c.slug}>{c.name}</option>)}</select>

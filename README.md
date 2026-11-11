@@ -1,4 +1,4 @@
-# Naaz Creation — handcrafted-goods store
+# Nazi Creation — handcrafted-goods store
 
 Next.js 16 · React 19 · Tailwind 4 · SQLite (`node:sqlite`, Node ≥ 24) · Razorpay · Resend (email)
 
@@ -7,7 +7,7 @@ Next.js 16 · React 19 · Tailwind 4 · SQLite (`node:sqlite`, Node ≥ 24) · R
 npm install
 npm run dev            # http://localhost:3000  (auto-creates & seeds data/karigar.db on first request)
 ```
-Default admin (dev only): `admin@naazcreation.com` / `Admin@12345` → **/admin**.
+Default admin (dev only): `admin@nazicreation.com` / `Admin@12345` → **/admin**.
 In dev, payments run in a clearly-labelled **test mode** (no keys needed): the order page shows "Simulate payment".
 
 ## What's inside
